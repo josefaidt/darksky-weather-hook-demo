@@ -13,8 +13,6 @@ const useDarkSkyWeather = (location, setData) => {
     let reqUrl = ''
     if (!location || location === null) {
       reqUrl = `${url}/${defaultLocation}`
-    } else if (location.longitude === null && location.latitude === null) {
-      return
     } else {
       const longitude = location.longitude.toFixed(4)
       const latitude = location.latitude.toFixed(4)
