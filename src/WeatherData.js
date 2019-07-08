@@ -2,8 +2,7 @@ import React from 'react'
 import useWeather from './hooks/useWeather'
 
 const WeatherData = props => {
-  const [data, setData] = React.useState({})
-  const { pending, error } = useWeather(props.geoLocation, setData)
+  const { data, pending, error } = useWeather(props.geoLocation)
   if (pending) return <span>Loading...</span>
   if (error) return <pre>{error}</pre>
   return <pre>{JSON.stringify(data, null, 2)}</pre>

@@ -5,7 +5,8 @@ const proxy = 'https://cors-anywhere.herokuapp.com'
 const forecastUrl = `https://api.darksky.net/forecast/${process.env.REACT_APP_API_KEY}`
 const url = `${proxy}/${forecastUrl}`
 
-const useDarkSkyWeather = (location, setData) => {
+const useDarkSkyWeather = (location) => {
+  const [response, setResponse] = React.useState({})
   const [error, setError] = React.useState(null)
   const [pending, setPending] = React.useState(true)
   React.useEffect(() => {
@@ -21,12 +22,12 @@ const useDarkSkyWeather = (location, setData) => {
     fetch(reqUrl)
       .then(r => r.json())
       .then(data => {
-        setData(data)
+        setResponse(data)
         setPending(false)
       })
       .catch(e => setError(new Error(e)))
-  }, [location, setData])
-  return { pending, error }
+  }, [location])
+  return { data: response, pending, error }
 }
 
 export default useDarkSkyWeather
